@@ -1,0 +1,49 @@
+<div class="container-sm" id="search_result_container"
+  *ngIf="this.showResults"
+  style="border:2px solid #cecece;
+  border-radius: 10px;
+  background-color:white;
+  max-width: 1200px;
+  padding-left: 0px;
+  padding-right: 0px;"
+  >
+  <!-- [style.display]="showResults? 'block':'none'"> -->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped" id="search_result_table">
+            <thead>
+              <th scope="col">#</th>
+              <th scope="col">Image</th>
+              <th scope="col">Business Name</th>
+              <th scope="col">Rating</th>
+              <th scope="col">Distance (miles)</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let business of businessArray; index as i" class="clickable-row" (click)="showDetails(business.id)">
+                <td>{{ i + 1 }}</td>
+                <td><img [src]=business.img_url /></td>
+                <td>{{ business.name }}</td>
+                <td>{{ business.rating }}</td>
+                <td>{{ business.distance }}</td>
+                <td hidden>{{ business.id }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-detailed-search-result
+*ngIf="this.detailsAvailable"
+[detailsAvailable]="detailsAvailable"
+[detailsJSON]="detailsJSON"
+[businessID]="businessID"
+(toggleDetails) = "closeDetails($event)"
+(toggleResults) = "re_displayResults($event)"
+></app-detailed-search-result>
+
+

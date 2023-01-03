@@ -1,0 +1,118 @@
+<div class="container" id="search_form_container" style="border:2px solid #cecece;
+border-radius: 10px;
+background-color:white;
+margin-top: 55px;
+padding: 1% 2.5%;
+max-width: 900px;
+max-height:900px;">
+
+  <form ngNativeValidate [formGroup]="searchForm" id="searchForm" name="searchForm" (ngSubmit)="search()"
+    class="form-horizontal">
+
+    <div style="margin-top: 10px;
+                text-align: center;
+                padding-top: 20px;"
+    class="row">
+      <h3 style="padding:10px;" id="title">Business Search</h3>
+    </div>
+
+    <div class="form-group row py-2 mx-auto">
+      <label for="keyword" class="col-sm=2 col-form-label">Keyword<span class="required"
+          style="color:red">*</span></label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" name="keyword" id="keyword" formControlName="keyword"
+        [value]=""
+        required="required"
+
+          matInput [matAutocomplete]="auto">
+
+        <button *ngIf="selectedText" matSuffix mat-icon-button aria-label="Clear" (click)="clearSelection()">
+          <mat-icon>close</mat-icon>
+        </button>
+
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelected()">
+
+          <mat-option *ngIf="isLoading" class="is-loading">
+            <div class="spinner-border spinner-border-sm" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </mat-option>
+
+          <ng-container *ngIf="!isLoading">
+            <mat-option *ngFor="let text of filteredSearch" [value]="text">
+              <span>{{text}}</span>
+            </mat-option>
+          </ng-container>
+        </mat-autocomplete>
+
+
+      </div>
+    </div>
+
+    <div class="form-group row mx-auto">
+      <div class="form-group py-2 col-sm-6">
+        <label for="distance">Distance</label>
+        <input class="form-control" type="number" step="0.01" name="distance" id="distance" placeholder="10"
+          formControlName="distance">
+      </div>
+
+      <div class="form-group py-2 col-sm-6 mx-auto">
+        <label for="category">Category<span class="required" style="color:red">*</span></label>
+        <select class="form-select" aria-label="Category select" id="categories" name="categories"
+          formControlName="categories" required>
+          <option value="all" [selected]="true">Default</option>
+          <option value="arts">Arts & Entertainment</option>
+          <option value="food">Food</option>
+          <option value="health">Health & Medical</option>
+          <option value="hotelstravel">Hotels & Travel</option>
+          <option value="professional">Professional Services</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row mx-auto">
+      <div class="form-group py-sm-3 mx-auto">
+        <label for="location">Location<span class="required" style="color:red">*</span></label>
+        <input type="text" class="form-control" name="location" id="location" formControlName="location" required>
+      </div>
+    </div>
+
+    <div class="form-group row py-2 mx-auto">
+      <div class="form group py-sm-1">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" formControlName="currentLocation" name="current_location"
+            id="current_location" (change)="currentLocation()">
+          <label class="form-check-label" for="current_location">
+            Auto-detect my location
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form group py-sm-3 mb-4" id="search_form_buttons">
+      <div class="col-sm-12 text-center">
+        <button type="submit" class="btn btn-danger btn-lg mx-3 my-1" id="search_button">Submit</button>
+        <button type="button" class="btn btn-primary btn-lg mx-3 my-1" id="clear_button" (click)="clear()">Clear</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<br>
+
+<div *ngIf = "this.noSearchResultsBoolean">
+  <div class="container-sm" style="border:2px solid #cecece;
+  border-radius: 10px;
+  background-color:white;
+  max-width: 500px;">
+
+  <h4 style="color:red;
+  text-align: center;"><b>No results available</b></h4>
+  </div>
+</div>
+<app-results-table
+*ngIf="this.searchResultsAvailable"
+[businesses]="searchResponse"
+[searchResultsAvailable]="searchResultsAvailable">
+</app-results-table>

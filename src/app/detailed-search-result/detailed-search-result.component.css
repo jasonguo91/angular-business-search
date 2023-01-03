@@ -1,0 +1,81 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+#previous_button {
+  font-size: 30px;
+  color: gray;
+}
+
+#previous_button:hover {
+  color: black;
+}
+
+#carousel_div{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items:center;
+}
+
+#carousel_img {
+  height: 350px;
+  width: 350px;
+  max-height: 350px;
+  max-width: 350px;
+
+  margin-left:auto;
+  margin-right:auto;
+
+  padding-top: 25px;
+  padding-bottom: 30px;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+#detail_buttons {
+  text-align: center;
+  align-items: center;
+}
+
+#detail_content {
+  text-align: center;
+}
+
+#detail_header {
+  text-align: center;
+}
+
+#map{
+  padding: 1% 1% 1% 1%;
+  width: 100% !important;
+  height: calc(100% - 20px) !important;
+}
+
+#map_container{
+  width: 100%;
+  height: 900px;
+  overflow: hidden;
+}
+
+#review_container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#hours{
+  max-width: 100px;
+}
+
+#minutes{
+  max-width: 100px;
+}
+
+.form-select{
+  background:none !important;
+}

@@ -1,0 +1,9 @@
+#form_header{
+  margin: auto;
+  text-align: center;
+}
+
+#keyword {
+  caret-color: black;
+  color: black; 
+}

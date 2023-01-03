@@ -1,0 +1,49 @@
+<h2 style="text-align:center;">List of your reservations</h2>
+
+<br>
+
+<div *ngIf="this.noReservationsBoolean">
+  <div class="container-sm" style="border:2px solid #cecece;
+  border-radius: 10px;
+  background-color:white;
+  max-width: 500px;">
+
+  <h4 style="color:red;
+  text-align: center;"><b>No reservations to show</b></h4>
+  </div>
+</div>
+
+<div *ngIf="!this.noReservationsBoolean" class="container" id="search_form_container" style="border:2px solid #cecece;
+  border-radius: 10px;
+  background-color:white;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;">
+  <div class="col-sm-12">
+    <div class="table-responsive">
+      <table class="table table-hover" id="search_result_table">
+        <thead>
+          <th scope="col">#</th>
+          <th scope="col">Business Name</th>
+          <th scope="col">Date</th>
+          <th scope="col">Time</th>
+          <th scope="col">E-mail</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservation of reservations;
+          index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ reservation.name }}</td>
+            <td>{{ reservation.date }}</td>
+            <td>{{ reservation.time }}</td>
+            <td>{{ reservation.email }}</td>
+            <td><button type="button"
+              class="button"
+              (click)="deleteReservation(reservation.name)"><i class="bi bi-trash"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
